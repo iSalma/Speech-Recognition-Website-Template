@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(19, 18, 18);
+    padding: 90px 30%;
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 80px;
+    color: white
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 100px 3px rgb(255, 255, 255);
+    border-radius: 50px;
+}
+
+.container::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.container h2 {
+    color: rgb(73, 73, 73);
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.container button {
+    float: right;
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 50px;
+    margin: 0px;
+    cursor: pointer;
+    color: white;
+    background: grey;
+    outline: 0;
+}
+
+.container button:hover {
+    background-color: red;
+}
+
+#note {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
+
