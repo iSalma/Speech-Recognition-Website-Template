@@ -3,33 +3,33 @@
 /*To enable the SpeechRecognition in Firefox Nightly > 72,
  go to about:config and switch the flags
   media.webspeech.recognition.enable and media.webspeech.recognition.force_enable to true.*/
-var message = document.querySelector('#message'),
-    ask = document.querySelector('#btnGiveCommand'),
+var message = document.querySelector('#message');
+var ask = document.querySelector('#btnGiveCommand');
 
-    SpeechRecognition = SpeechRecognition || webkitSpeechRecognition,
-    SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList,
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 
-    // JSpeech Grammar Format
-    grammar = '#JSGF V1.0;',
+    /*JSpeech Grammar Format*/
+var grammar = '#JSGF V1.0;';
 
-    recognition = new SpeechRecognition(),
-    speechRecognitionList = new SpeechGrammarList();
+var recognition = new SpeechRecognition();
+var speechRecognitionList = new SpeechGrammarList();
 
     
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 
-// Define the languages of the SpeechRecognition
+/**Choose language */
 recognition.lang = 'en-US';
 
-// interimResults Controls whether interim results should be returned
+/** */
 recognition.interimResults = false;
 
-// OnResult event
+/**when there is a result */
 recognition.onresult = event => {
     setTimeout(() => {
-        var last = event.results.length - 1,
-        command = event.results[last][0].transcript;
+        var says = event.results.length - 1,
+        command = event.results[says][0].transcript;
 
         message.textContent = 'Command: ' + command;
 
@@ -44,18 +44,28 @@ recognition.onresult = event => {
 
             case 'open youtube':
                 open("https://www.youtube.com", "_blank");
-                message.textContent = 'Done, YouTube is opened';
+                message.textContent = 'YouTube is opened';
                 break;
                 
             case 'open google':
                 open("https://www.google.com", "_blank");
-                message.textContent = 'Done, Google is opened';
+                message.textContent = 'Google is opened';
                 break;
                 
             case 'open facebook':
                 open("https://www.facebook.com", "_blank");
-                message.textContent = 'Done, Facebook is opened';
+                message.textContent = 'Facebook is opened';
                 break;
+
+            case 'open twitter':
+              open("https://www.twitter.com", "_blank");
+              message.textContent = 'Twitter is opened';
+              break;
+
+            case 'open whatsapp':
+              window.location.href = "whatsapp://"
+              message.textContent = 'Whatsapp is opened';
+            break;
 
             case 'what time is it':
                 var today = new Date();
@@ -70,19 +80,41 @@ recognition.onresult = event => {
     }, 500);
 };
 
-// OnSpeech end event
+/**Ask button to start recognition */
+ask.addEventListener('click', () => {
+  recognition.start();
+  message.textContent = 'Listening ...';
+});
+
+/*on speech*/
 recognition.onspeechend = () => {
     recognition.stop();
 };
 
-// OnError event
+/**when error happens */
 recognition.onerror = event => {
     message.textContent = 'Error occurred in recognition: ' + event.error;
 }        
 
-// Start recognition by clicking
-ask.addEventListener('click', () => {
-    recognition.start();
-    message.textContent = 'Listening ...';
-});
 
+
+
+
+
+
+
+
+
+// function twtPost(txtID, URL) {
+//   var txt = document.getElementById(txtID).textContent;
+//   window.open('https://twitter.com/share?text=' + txt + '&url=' + URL, "_blank");
+// }
+
+// function fbPost(URL) {
+//   window.open('https://www.facebook.com/sharer/sharer.php?u=' + URL, "_blank");
+// }
+
+// function whatsAppShare(txtID, URL) {
+//   var txt = document.getElementById(txtID).textContent;
+//   window.location.href = "whatsapp://send?text=" + txt + " -- Link: " + URL;
+// }
