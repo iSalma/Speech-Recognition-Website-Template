@@ -1,6 +1,7 @@
 <p align="center">
   <img src=speech.png>
- </p>
+</p>
+
 # Speech Recognition Website Template
 Click on ask button and talk.
 Note: it works on Chrome perfectly but to use on firefox follow these stept:
