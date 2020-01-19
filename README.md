@@ -15,7 +15,7 @@ Note: it works on Chrome perfectly but to use on firefox follow these stept:
 - What time it is?
 
 # Visit
-Click on [this] (https://isalma.github.io/Speech-Recognition-Website-Template/) to go to the website.
+Click on (link) [https://isalma.github.io/Speech-Recognition-Website-Template/] to go to the website.
 
 # Using
 - HTML5
